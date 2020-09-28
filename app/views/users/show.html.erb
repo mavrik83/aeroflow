@@ -1,3 +1,13 @@
+<h1 class="text-center mt-4"><%= @user.username.capitalize %>'s Profile </h1>
+
+
+<div class="container">
+  <% @questions.each do |q| %>
+    <%= q.title %>
+    <%= q.content %>
+  <% end %>
+</div>
+
 <div class="container">
   <% @answers.wach do |a| %>
     <%= a.title %>
