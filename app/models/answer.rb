@@ -5,8 +5,7 @@ class Answer < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :tags
 
-  validates :title, presence: true, length: { minimum: 6, maximum: 100 }
-  validates :content, presence: true, length: { minimum: 10, maximum: 600 }
+  validates :title, presence: true, length: { minimum: 6, maximum: 1000 }
+  validates :content, presence: true, length: { minimum: 20, maximum: 3500 }
 
-  scope :answered, -> { where(answered: true) }
 end
