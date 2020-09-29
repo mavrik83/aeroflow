@@ -1,16 +1,16 @@
 <h1 class="text-center mt-4"><%= @user.username.capitalize %>'s Profile </h1>
 
 
-<div class="container">
-  <% @questions.each do |q| %>
-    <%= q.title %>
-    <%= q.content %>
-  <% end %>
-</div>
+<h3 class="text-center mt-4"> Questions </h3>
 
-<div class="container">
-  <% @answers.wach do |a| %>
-    <%= a.title %>
-    <%= a.content %>
-  <% end %>
+
+
+<div class="flickr_pagination">
+      <%= will_paginate @questions, :container => false %>
 </div>
+<%= render 'questions' %>
+
+
+
+
+
