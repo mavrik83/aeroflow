@@ -1,0 +1,17 @@
+<div class="container">
+  <% @questions.each do |q| %>
+    <div class="row justify-content-md-center">
+      <div class="col-8 mt-4">
+        <div class="cardtext-center shadow mb-5 bg-white rounded">
+          <h5 class="card-header"><%= @user.username %></h5>
+          <div class="card-body">
+            <h5 class="card-title"><%= q.title.capitalize %></h5>
+            <p class="card-text"><%= q.content %></p>
+            <a href="#" class="btn btn-outline-dark">delete</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
