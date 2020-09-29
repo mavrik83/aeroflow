@@ -7,5 +7,4 @@ class Answer < ApplicationRecord
 
   validates :title, presence: true, length: { minimum: 6, maximum: 1000 }
   validates :content, presence: true, length: { minimum: 20, maximum: 3500 }
-
 end

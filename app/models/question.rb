@@ -10,7 +10,6 @@ class Question < ApplicationRecord
   validates :content, presence: true, length: { minimum: 20, maximum: 3500 }
 
   scope :answered, -> { where(answered: true) }
-
 end
 
 # Question.where(‘title like ?’, ‘%engine%’)
