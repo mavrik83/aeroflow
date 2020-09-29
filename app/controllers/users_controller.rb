@@ -1,13 +1,17 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :require_user, only: [:edit, :update]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
+
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page], per_page: 5)
   end
 
   def show
-    @questions = User.question.all
-    @asnwers = User.answer.all
+    @questions = @user.questions.paginate(page: params[:page], per_page: 5)
+    @answers = @user.answers.paginate(page: params[:page], per_page: 5)
   end
 
   def new
@@ -28,7 +32,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to @user
+      redirect_to user_path(@user)
     end
   end
 

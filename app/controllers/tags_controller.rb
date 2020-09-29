@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class TagsController < ApplicationController
-
   def show; end
 
   def index
@@ -54,5 +53,4 @@ class TagsController < ApplicationController
       redirect_to @tag
     end
   end
-  
 end
