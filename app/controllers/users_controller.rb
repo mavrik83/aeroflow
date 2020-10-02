@@ -38,7 +38,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
+      flash[:success] = "Welcome to AeroFlow, #{@user.username}! You have successfully signed up!"
       redirect_to user_path(@user)
+    else
+      render 'new'
     end
   end
 
@@ -59,6 +62,9 @@ class UsersController < ApplicationController
   end
 
   def require_same_user
-    redirect_to @user if current_user != @user && !curent_user.admin?
+    if current_user != @user && !current_user.admin?
+      flash[:danger] = "You cannot change or view other profiles unless you are an admin"
+      redirect_to @user
+    end
   end
 end
