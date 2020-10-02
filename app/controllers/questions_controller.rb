@@ -1,10 +1,22 @@
 # frozen_string_literal: true
 
 class QuestionsController < ApplicationController
-  def show; end
+  before_action :set_question, only: %i[show edit update destroy]
+  before_action :require_user, except: %i[show index]
+  before_action :require_same_user, only: %i[edit update destroy]
+
+  def show
+    @answers = @question.answers.last(3)
+  end
 
   def index
-    @questions = Question.all
+    if params[:sort] == "answered"
+      @questions = Question.answered.paginate(page: params[:page], per_page: 5)
+    elsif params[:sort] 
+      @questions = Question.where('category_id = ?', params[:sort]).paginate(page: params[:page], per_page: 5)
+    else
+      @questions = Question.order('created_at DESC').paginate(page: params[:page], per_page: 5)
+    end
   end
 
   def new
