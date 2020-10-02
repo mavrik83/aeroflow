@@ -10,5 +10,3 @@ class Question < ApplicationRecord
 
   scope :answered, -> { where(answered: true) }
 end
-
-# Question.where(‘title like ?’, ‘%engine%’)
