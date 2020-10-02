@@ -2,7 +2,7 @@
 
 class PagesController < ApplicationController
   def home
-    redirect_to users_path if logged_in?
+    redirect_to questions_path if logged_in?
   end
 
   def about; end
