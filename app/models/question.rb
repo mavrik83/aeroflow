@@ -3,8 +3,7 @@
 class Question < ApplicationRecord
   belongs_to :user
   belongs_to :category
-  has_many :answers
-  has_and_belongs_to_many :tags
+  has_many :answers, dependent: :destroy
 
   validates :title, presence: true, length: { minimum: 6, maximum: 1000 }
   validates :content, presence: true, length: { minimum: 20, maximum: 3500 }
