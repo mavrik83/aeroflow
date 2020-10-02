@@ -29,15 +29,15 @@ class QuestionsController < ApplicationController
     if @question.update(question_params)
       redirect_to @question
     else
-      redirect_to 'edit'
+      render 'edit'
     end
   end
 
   def create
-    @question = question.new(question_params)
+    @question = Question.new(question_params)
     @question.user = current_user
     if @question.save
-      # flash[:success] = 'Save succesful!'
+      flash[:success] = 'Save succesful!'
       redirect_to @question
     else
       render 'new'
@@ -45,23 +45,23 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @question.destroy
+    @question.delete
     redirect_to questions_path
   end
 
   private
 
   def set_question
-    @question = question.find(params[:id])
+    @question = Question.find(params[:id])
   end
 
   def question_params
-    params.require(:question).permit(:title, :content)
+    params.require(:question).permit(:title, :content, :category_id, :search)
   end
 
   def require_same_user
     if current_user != @question.user && !current_user.admin
-      # flash[:danger] = "You can only edit or delete your own questions"
+      flash[:danger] = "You can only edit or delete your own questions"
       redirect_to @question
     end
   end
