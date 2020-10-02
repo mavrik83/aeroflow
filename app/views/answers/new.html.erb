@@ -1,0 +1,18 @@
+<h1 class="text-center mt-4"> Answer This Question </h1>
+<div class="container col-8 mt-4">
+  <div class="card text-center shadow mb-5 bg-white rounded">
+    <div class="card-header font-italic">
+      Asked by: <%= @question.user.username.titleize %>
+      <small><%= time_ago_in_words(@question.created_at) %> ago</small>
+    </div>
+    <div class="card-body">
+      <div class="card-text text-left"><%= simple_format(@question.content) %></div>
+    </div>
+    <div class="card-footer text-muted">
+      <small>
+        <small class="text-left">Category:  <%= @question.category.name.capitalize %></small>
+      </small>
+    </div>
+  </div>
+</div>
+<%= render 'form' %>
