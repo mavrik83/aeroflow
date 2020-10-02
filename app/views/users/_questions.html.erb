@@ -2,16 +2,29 @@
   <% @questions.each do |q| %>
     <div class="row justify-content-md-center">
       <div class="col-8 mt-4">
-        <div class="cardtext-center shadow mb-5 bg-white rounded">
-          <h5 class="card-header"><%= @user.username %></h5>
+        <div class="card text-center shadow mb-5 bg-white rounded">
+          <div class="card-header font-italic">
+            asked by:
+            <%= link_to q.user.username.titleize, user_path(q.user_id), class: "text-dark" %>
+            <small><%= time_ago_in_words(q.created_at) %> ago</small>
+          </div>
           <div class="card-body">
             <h5 class="card-title"><%= q.title.capitalize %></h5>
-            <p class="card-text"><%= q.content %></p>
-            <a href="#" class="btn btn-outline-dark">delete</a>
+            <p class="card-text"><%= truncate(q.content, length: 50) %></p>
+            <small>
+              <p class="card-text mb-2"><%= pluralize(q.answers.count, "Answer") %></p>
+            </small>
+            <%= link_to 'View', question_path(q), class: "btn btn-outline-dark" %>
+            <% if logged_in? && (q.user == current_user || current_user.admin?) %>
+              <%= link_to 'Delete', question_path(q), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger"  %>
+            <% end %>
+          </div>
+          <div class="card-footer text-muted">
+            <small class="text-left">Category:  <%= link_to q.category.name.capitalize, questions_path(:sort => q.category.id), title: "Show all questions in this category" %>
+            </small>
           </div>
         </div>
       </div>
     </div>
   <% end %>
 </div>
-
