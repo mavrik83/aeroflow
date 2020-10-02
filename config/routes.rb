@@ -7,18 +7,16 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
+  get '/auth/:provider/callback' => 'sessions#oauth'
 
-  # resources :answers
-  resources :tags
   resources :categories
   resources :questions do
-    resources :answers, shallow: true
-    # resources :articles do
-    #   resources :comments, only: [:index, :new, :create]
+    resources :answers, only: %i[new create index]
+    # resources :questions do
+    #   resources :answers, only: [:index, :new, :create]
     # end
-    # resources :comments, only: [:show, :edit, :update, :destroy]
+    # resources :answers, only: [:show, :edit, :update, :destroy]
   end
-
+  resources :answers, only: [:index, :destroy, :edit, :update]
   resources :users, except: [:new]
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
