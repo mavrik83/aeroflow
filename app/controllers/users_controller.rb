@@ -6,7 +6,13 @@ class UsersController < ApplicationController
   before_action :require_same_user, only: %i[edit update destroy]
 
   def index
-    @users = User.paginate(page: params[:page], per_page: 5)
+    if logged_in? && current_user.admin?
+      @users = User.order("created_at DESC").paginate(page: params[:page], per_page: 5)
+    elsif logged_in?
+      redirect_to questions_path
+    else
+      redirect_to root_path
+    end
   end
 
   def show
