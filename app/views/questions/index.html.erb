@@ -1,1 +1,14 @@
-<h1>Index of Questions</h1>
+<h1 class="text-center mt-4">Index of Questions</h1>
+<div class="container text-center">
+  <small>
+    <%= @questions.answered.count %> of <%= @questions.count %> Questions have been 
+    <%= link_to "answered", questions_path(:sort => "answered"), title: "Show only questions that have been answered" %>
+  </small>
+</div>
+<div class="flickr_pagination">
+  <%= will_paginate @questions, :container => false %>
+</div>
+<%= render 'users/questions' %>
+<div class="flickr_pagination">
+  <%= will_paginate @questions, :container => false %>
+</div>
