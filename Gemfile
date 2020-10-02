@@ -33,7 +33,6 @@ gem 'omniauth-google-oauth2'
 
 gem 'font-awesome-rails'
 
-
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

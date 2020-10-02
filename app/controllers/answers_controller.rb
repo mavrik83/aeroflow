@@ -45,7 +45,7 @@ class AnswersController < ApplicationController
   def destroy
     answer = @answer
     @answer.destroy
-    if answer.question.answers.count == 0
+    if answer.question.answers.count.zero?
       answer.question.answered = false
       answer.question.save
     end

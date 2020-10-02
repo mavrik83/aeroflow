@@ -12,11 +12,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :questions do
     resources :answers, only: %i[new create index]
-    # resources :questions do
-    #   resources :answers, only: [:index, :new, :create]
-    # end
-    # resources :answers, only: [:show, :edit, :update, :destroy]
   end
-  resources :answers, only: [:index, :destroy, :edit, :update]
+  resources :answers, only: %i[index destroy edit update]
   resources :users, except: [:new]
 end

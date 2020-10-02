@@ -20,8 +20,8 @@
           <% end %>
           <%= link_to "View All Questions", questions_path, class: "dropdown-item" %>
           <% if logged_in? && current_user.admin? %>
-          <div class="dropdown-divider"></div>
-          <%= link_to "View All Answers", answers_path, class: "dropdown-item text-info" %>
+            <div class="dropdown-divider"></div>
+            <%= link_to "View All Answers", answers_path, class: "dropdown-item text-info" %>
           <% end %>
         </div>
       </li>

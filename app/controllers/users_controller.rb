@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   def index
     if logged_in? && current_user.admin?
-      @users = User.order("created_at DESC").paginate(page: params[:page], per_page: 5)
+      @users = User.order('created_at DESC').paginate(page: params[:page], per_page: 5)
     elsif logged_in?
       redirect_to questions_path
     else
@@ -16,8 +16,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @questions = @user.questions.order("created_at DESC").paginate(page: params[:page], per_page: 5)
-    @answers = @user.answers.order("created_at DESC").paginate(page: params[:page], per_page: 5)
+    @questions = @user.questions.order('created_at DESC').paginate(page: params[:page], per_page: 5)
+    @answers = @user.answers.order('created_at DESC').paginate(page: params[:page], per_page: 5)
   end
 
   def new
@@ -63,7 +63,7 @@ class UsersController < ApplicationController
 
   def require_same_user
     if current_user != @user && !current_user.admin?
-      flash[:danger] = "You cannot change or view other profiles unless you are an admin"
+      flash[:danger] = 'You cannot change or view other profiles unless you are an admin'
       redirect_to @user
     end
   end

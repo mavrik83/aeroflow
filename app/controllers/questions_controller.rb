@@ -10,13 +10,13 @@ class QuestionsController < ApplicationController
   end
 
   def index
-    if params[:sort] == "answered"
-      @questions = Question.answered.paginate(page: params[:page], per_page: 5)
-    elsif params[:sort] 
-      @questions = Question.where('category_id = ?', params[:sort]).paginate(page: params[:page], per_page: 5)
-    else
-      @questions = Question.order('created_at DESC').paginate(page: params[:page], per_page: 5)
-    end
+    @questions = if params[:sort] == 'answered'
+                   Question.answered.paginate(page: params[:page], per_page: 5)
+                 elsif params[:sort]
+                   Question.where('category_id = ?', params[:sort]).paginate(page: params[:page], per_page: 5)
+                 else
+                   Question.order('created_at DESC').paginate(page: params[:page], per_page: 5)
+                 end
   end
 
   def new
@@ -61,7 +61,7 @@ class QuestionsController < ApplicationController
 
   def require_same_user
     if current_user != @question.user && !current_user.admin
-      flash[:danger] = "You can only edit or delete your own questions"
+      flash[:danger] = 'You can only edit or delete your own questions'
       redirect_to @question
     end
   end
