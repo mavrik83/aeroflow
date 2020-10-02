@@ -26,6 +26,14 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'will_paginate', '~> 3.1.0'
 
+gem 'dotenv-rails'
+gem 'omniauth'
+gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
+gem 'omniauth-google-oauth2'
+
+gem 'font-awesome-rails'
+
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
