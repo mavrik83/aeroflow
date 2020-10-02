@@ -1,7 +1,10 @@
 @import 'bootstrap/dist/css/bootstrap';
 
-.navbar {
-  background-color: black !important;
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 3px solid rgba(0, 0, 0, 0.5);
 }
 
 .nav-link {
@@ -23,6 +26,10 @@
 
 #home-container {
   margin-top: 25px;
+}
+
+#member-link {
+  color: #5bc0de !important;
 }
 
 .jumbotron {
@@ -60,6 +67,13 @@ body {
 #card-desc {
   text-decoration: none;
   color: inherit;
+}
+
+#google-button {
+  background-image: asset-url('googleb.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* pagination styling */
