@@ -1,16 +1,6 @@
-<h1 class="text-center mt-4"><%= @user.username.capitalize %>'s Profile </h1>
-
-
+<h1 class="text-center mt-4"><%= @user.username.titleize %>'s Profile </h1>
 <h3 class="text-center mt-4"> Questions </h3>
-
-
-
 <div class="flickr_pagination">
-      <%= will_paginate @questions, :container => false %>
+  <%= will_paginate @questions, :container => false %>
 </div>
 <%= render 'questions' %>
-
-
-
-
-
