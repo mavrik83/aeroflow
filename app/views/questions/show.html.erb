@@ -1,0 +1,50 @@
+<h2 class="text-center mt-4"> <%= @question.title %> </h2>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-8 mt-4">
+      <div class="card text-center shadow mb-5 bg-white rounded">
+        <div class="card-header font-italic">
+          Asked by: <%= @question.user.username.titleize %>
+          <small><%= time_ago_in_words(@question.created_at) %> ago</small>
+        </div>
+        <div class="card-body">
+          <div class="card-text text-left"><%= simple_format(@question.content) %></div>
+          <% if logged_in? %>
+            <%= link_to 'Give an Answer', new_question_answer_path(@question), class: "btn btn-outline-dark" %>
+          <% end %>
+          <% if logged_in? && (@question.user == current_user || current_user.admin?) %>
+            <%= link_to 'Edit', edit_question_path(@question), class: "btn btn-outline-dark" %>
+            <%= link_to 'Delete', question_path(@question), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger"  %>
+          <% end %>
+        </div>
+        <div class="card-footer text-muted">
+          <small>
+            <small class="text-left">Category:  <%= @question.category.name.capitalize %></small>
+          </small>
+        </div>
+      </div>
+      <hr/>
+      <h4 class="text-center my-4">Latest Answers:</h4>
+      <% @answers.each do |a| %>
+        <div class="card text-center shadow mb-5 bg-white rounded">
+          <div class="card-header font-italic">
+            Answered by: <%= a.user.username.titleize %>
+            <small><%= time_ago_in_words(a.created_at) %> ago</small>
+          </div>
+          <div class="card-body">
+            <div class="card-text text-left"><%= simple_format(a.content) %></div>
+            <% if logged_in? && (a.user == current_user || current_user.admin?) %>
+            <%= link_to 'Edit', edit_answer_path(a), class: "btn btn-outline-dark" %>
+            <%= link_to 'Delete', answer_path(a), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger"  %>
+          <% end %>
+          </div>
+        </div>
+      <% end %>
+      <div class="container">
+      <div class="row justify-content-md-center">
+      <%= link_to 'See all answers for this question', question_answers_path(@question), class: "btn btn-outline-dark" %>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
