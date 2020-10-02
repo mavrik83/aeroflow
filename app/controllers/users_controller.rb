@@ -16,8 +16,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @questions = @user.questions.paginate(page: params[:page], per_page: 5)
-    @answers = @user.answers.paginate(page: params[:page], per_page: 5)
+    @questions = @user.questions.order("created_at DESC").paginate(page: params[:page], per_page: 5)
+    @answers = @user.answers.order("created_at DESC").paginate(page: params[:page], per_page: 5)
   end
 
   def new
