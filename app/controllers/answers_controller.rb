@@ -2,9 +2,18 @@
 
 class AnswersController < ApplicationController
   def show; end
+  before_action :set_answer, only: %i[show edit update destroy]
+  before_action :set_question, only: %i[new create]
+  before_action :require_user, excpet: %i[show index]
 
   def index
     @answers = answer.all
+    if params[:question_id]
+      set_question
+      @answers = @question.answers.order('created_at DESC').paginate(page: params[:page], per_page: 5)
+    else
+      @answers = Answer.order('created_at DESC').paginate(page: params[:page], per_page: 5)
+    end
   end
 
   def new
