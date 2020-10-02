@@ -1,0 +1,9 @@
+<h1 class="text-center mt-4">Index of Answers</h1>
+
+<div class="flickr_pagination">
+  <%= will_paginate @answers, :container => false %>
+</div>
+<%= render 'answers'%>
+<div class="flickr_pagination">
+  <%= will_paginate @answers, :container => false %>
+</div>
