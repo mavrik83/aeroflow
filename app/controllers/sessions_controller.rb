@@ -15,6 +15,23 @@ class SessionsController < ApplicationController
     end
   end
 
+  def oauth
+    auth_hash = request.env['omniauth.auth']
+    oauth_email = auth_hash['info']['email']
+    if user = User.find_by(email: oauth_email)
+      session[:user_id] = user.id
+      redirect_to questions_path
+    else
+      user = User.new(username: auth_hash['info']['name'], email: oauth_email, password: SecureRandom.hex)
+      if user.save
+        session[:user_id] = user.id
+        redirect_to user
+      else
+        redirect_to login_path
+      end
+    end
+  end
+
   def destroy
     session[:user_id] = nil
     flash[:success] = 'Log out successful'
