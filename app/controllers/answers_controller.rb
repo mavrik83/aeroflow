@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
 class AnswersController < ApplicationController
-  def show; end
   before_action :set_answer, only: %i[show edit update destroy]
   before_action :set_question, only: %i[new create]
   before_action :require_user, excpet: %i[show index]
 
   def index
-    @answers = answer.all
     if params[:question_id]
       set_question
       @answers = @question.answers.order('created_at DESC').paginate(page: params[:page], per_page: 5)
@@ -17,16 +15,16 @@ class AnswersController < ApplicationController
   end
 
   def new
-    @answer = answer.new
+    @answer = Answer.new
   end
 
   def edit; end
 
   def update
     if @answer.update(answer_params)
-      redirect_to @answer
+      redirect_to question_path(@answer.question)
     else
-      redirect_to 'edit'
+      render 'edit'
     end
   end
 
@@ -56,18 +54,15 @@ class AnswersController < ApplicationController
 
   private
 
+  def set_question
+    @question = Question.find(params[:question_id])
+  end
+
   def set_answer
-    @answer = answer.find(params[:id])
+    @answer = Answer.find(params[:id])
   end
 
   def answer_params
-    params.require(:answer).permit(:title, :content)
-  end
-
-  def require_same_user
-    if current_user != @answer.user && !current_user.admin
-      # flash[:danger] = "You can only edit or delete your own answers"
-      redirect_to @answer
-    end
+    params.require(:answer).permit(:title, :content, :question_id)
   end
 end
