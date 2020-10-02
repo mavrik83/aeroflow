@@ -31,11 +31,14 @@ class AnswersController < ApplicationController
   end
 
   def create
-    @answer = answer.new(answer_params)
+    @answer = Answer.new(answer_params)
+    @answer.question_id = params[:question_id]
     @answer.user = current_user
+    @question.answered = true
     if @answer.save
-      # flash[:success] = 'Save succesful!'
-      redirect_to @answer
+      @question.save
+      flash[:success] = 'Save succesful!'
+      redirect_to question_path(@answer.question)
     else
       render 'new'
     end
