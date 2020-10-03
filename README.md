@@ -10,4 +10,4 @@
 
 ## Installation
 
-> You can check out live production version of this project at [AeroFlow](http://aeroflow.herokuapp.com)
+> You can check out live production version of this project at [AeroFlow](https://aeroflow.herokuapp.com)
