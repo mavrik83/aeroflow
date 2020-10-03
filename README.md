@@ -1,24 +1,13 @@
-# README
+# AeroFlow
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Introduction
 
-Things you may want to cover:
+> I envisioned this project as a basic clone of StackOverflow, but for aviation mechanics. Such a resource would have been extremely useful in my past life as helicopter mechanic. In this web app, a user can browse questions and answers, but needs to sign up and login to ask or answer any questions.
 
-* Ruby version
+## Code Samples
 
-* System dependencies
+> Admittedly, the most difficult part of this project was creating all of the necessary association while keeping the models flexible enough for future features. 
 
-* Configuration
+## Installation
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+> You can check out live production version of this project at [AeroFlow](http://aeroflow.herokuapp.com)
