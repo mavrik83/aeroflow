@@ -6,8 +6,8 @@
 
 ## Code Samples
 
-> Admittedly, the most difficult part of this project was creating all of the necessary association while keeping the models flexible enough for future features. 
+> Admittedly, the most difficult part of this project was creating all of the necessary associations while keeping the models flexible enough for future features. 
 
 ## Installation
 
-> You can check out live production version of this project at [AeroFlow](https://aeroflow.herokuapp.com)
+> You can check out the live production version of this project at [AeroFlow](https://aeroflow.herokuapp.com)
