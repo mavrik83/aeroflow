@@ -56,7 +56,7 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:title, :content, :category_id, :search)
+    params.require(:question).permit(:title, :content, :category_id)
   end
 
   def require_same_user

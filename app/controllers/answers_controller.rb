@@ -8,8 +8,10 @@ class AnswersController < ApplicationController
   def index
     if params[:question_id]
       set_question
+      @title = "All Answers for: #{@question.title}"
       @answers = @question.answers.order('created_at DESC').paginate(page: params[:page], per_page: 5)
     else
+      @title = 'All Answers'
       @answers = Answer.order('created_at DESC').paginate(page: params[:page], per_page: 5)
     end
   end
