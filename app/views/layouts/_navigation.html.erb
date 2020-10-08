@@ -53,5 +53,11 @@
         ADMIN
       </div>
     <% end %>
+      <%= form_with(url: "/questions", method: "get", local: true) do %>
+        <%= label_tag(:search, "Search for:") %>
+        <%= text_field_tag(:search) %>
+        <%= submit_tag("Search") %>
+      <% end %>
+
   </div>
 </nav>

@@ -5,5 +5,4 @@ class PagesController < ApplicationController
     redirect_to questions_path if logged_in?
   end
 
-  def about; end
 end

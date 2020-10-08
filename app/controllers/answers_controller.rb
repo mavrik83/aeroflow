@@ -45,13 +45,13 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    answer = @answer
+    # answer = @answer
     @answer.destroy
-    if answer.question.answers.count.zero?
-      answer.question.answered = false
-      answer.question.save
+    if @answer.question.answers.count.zero?
+      @answer.question.answered = false
+      @answer.question.save
     end
-    redirect_to question_path(answer.question_id)
+    redirect_to question_path(@answer.question_id)
   end
 
   private
