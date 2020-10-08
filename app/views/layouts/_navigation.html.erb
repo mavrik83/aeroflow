@@ -53,10 +53,9 @@
         ADMIN
       </div>
     <% end %>
-      <%= form_with(url: "/questions", method: "get", local: true) do %>
-        <%= label_tag(:search, "Search for:") %>
-        <%= text_field_tag(:search) %>
-        <%= submit_tag("Search") %>
+      <%= form_with(url: "/questions", method: "get", class: "form-inline my-2 my-lg-0", local: true) do %>
+        <%= text_field_tag(:search, "", class: "form-control mr-sm-2") %>
+        <%= submit_tag("Search", class: "btn btn-outline-light my-2 my-sm-0") %>
       <% end %>
 
   </div>

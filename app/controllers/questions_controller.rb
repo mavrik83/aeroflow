@@ -15,7 +15,7 @@ class QuestionsController < ApplicationController
                  elsif params[:sort]
                    Question.where('category_id = ?', params[:sort]).paginate(page: params[:page], per_page: 5)
                  elsif params[:search]
-                   Question.where('content LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 5)
+                   Question.where('content or title LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 5)
                  else
                    Question.order('created_at DESC').paginate(page: params[:page], per_page: 5)
                  end
