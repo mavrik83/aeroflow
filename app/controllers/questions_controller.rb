@@ -9,13 +9,15 @@ class QuestionsController < ApplicationController
     @answers = @question.answers.last(3)
   end
 
-  def index # Move the logic to the models
+  # Move the logic to the models
+  def index
     @questions = if params[:sort] == 'answered'
                    Question.answered.paginate(page: params[:page], per_page: 5)
                  elsif params[:sort]
                    Question.where('category_id = ?', params[:sort]).paginate(page: params[:page], per_page: 5)
                  elsif params[:search]
-                   Question.where('content or title LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 5)
+                   Question.where('content or title LIKE ?', "%#{params[:search]}%").paginate(page: params[:page],
+                                                                                              per_page: 5)
                  else
                    Question.order('created_at DESC').paginate(page: params[:page], per_page: 5)
                  end
@@ -67,5 +69,4 @@ class QuestionsController < ApplicationController
       redirect_to @question
     end
   end
-
 end
